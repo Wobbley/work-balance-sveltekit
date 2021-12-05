@@ -1,5 +1,5 @@
 {
-  "name": "sveltekit-typescript-tailwindcss-template",
+  "name": "work-balance-sveltekit",
   "version": "0.0.1",
   "scripts": {
     "dev": "svelte-kit dev",
@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "@sveltejs/kit": "next",
+    "@sveltejs/adapter-vercel": "next",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "@typescript-eslint/parser": "^4.31.1",
     "autoprefixer": "^10.4.0",
