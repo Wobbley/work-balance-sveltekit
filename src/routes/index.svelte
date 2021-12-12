@@ -1,45 +1,76 @@
 <script lang="ts">
-	let subtitle: string = 'Helpful Links';
+	import { DateTime } from "luxon";
+	import { fetchDiff } from '$lib/diffclient';
+	import { humanReadableTime } from '$lib/timeUtils';
+	import type { DiffRequest } from '$lib/types';
+
+	let endDate = new Date()
+	let startDate = new Date(endDate);
+	startDate.setDate(1);
+	let diffRequest: DiffRequest = {
+		startDate: DateTime.fromJSDate(startDate).toISODate(),
+		endDate: DateTime.fromJSDate(endDate).toISODate(),
+		workdayLength: 7.5,
+		workspaceId: undefined,
+		apiKey: undefined
+		
+	}
+	let loading = false;
+	let diffDisplay = {
+		workedInHours: "",
+		expectedHours: "",
+		diffHours: "",
+	};
+
+	function getDiff() {
+		loading = true
+        fetchDiff(diffRequest)
+            .then(diffData => {
+                diffDisplay.workedInHours = humanReadableTime(diffData.workedInHours)
+                diffDisplay.expectedHours = humanReadableTime(diffData.expectedHours)
+                diffDisplay.diffHours = humanReadableTime(diffData.diffHours)
+                loading = false;
+				console.log(diffData)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+	
 </script>
 
-<div class="grid place-content-center m-20 p-20 border-2 border-blue-400 rounded-lg shadow-xl">
-	<h1 class="text-4xl mb-4">
-		<span class="text-[#FF3E00]">Sveltekit</span>
-		with
-		<span class="text-[#3178c6]">Typescript</span>
-		&
-		<span class="text-[#06B6D4]">Tailwind CSS</span>
-	</h1>
-	<h2 class="text-center text-3xl uppercase">{subtitle}</h2>
-	<hr />
-	<div class="mt-4 w-full">
-		<a href="https://kit.svelte.dev/" target="_blank">
-			<div
-				class="my-5 text-center font-semibold text-xl shadow-md rounded-xl p-4 border-2 border-blue-400 w-full hover:bg-blue-400 hover:text-white transition-colors duration-200 ease-linear"
-			>
-				SvelteKit Docs
-			</div>
-		</a>
-		<a href="https://www.typescriptlang.org/docs/" target="_blank">
-			<div
-				class="my-5 text-center font-semibold text-xl shadow-md rounded-xl p-4 border-2 border-blue-400 w-full hover:bg-blue-400 hover:text-white transition-colors duration-200 ease-linear"
-			>
-				Typescript Docs
-			</div>
-		</a>
-		<a href="https://tailwindcss.com/" target="_blank">
-			<div
-				class="my-5 text-center font-semibold text-xl shadow-md rounded-xl p-4 border-2 border-blue-400 w-full hover:bg-blue-400 hover:text-white transition-colors duration-200 ease-linear"
-			>
-				Tailwind Docs
-			</div>
-		</a>
-		<a href="https://daisyui.com//" target="_blank">
-			<div
-					class="my-5 text-center font-semibold text-xl shadow-md rounded-xl p-4 border-2 border-blue-400 w-full hover:bg-blue-400 hover:text-white transition-colors duration-200 ease-linear"
-			>
-				Tailwind Docs
-			</div>
-		</a>
+<div class="flex flex-col items-center">
+	<div class="w-1/2 form-control space-y-1 ">
+		<label class="input-group input-group-vertical input-group">
+			<span class="text-primary">Workspace ID</span> 
+			<input type="text" id="workspaceId" class="input" bind:value={diffRequest.workspaceId} placeholder="Enter your workspace ID"/>
+		</label>
+		<label class="input-group input-group-vertical">
+			<span class="text-primary">API Key</span> 
+			<input type="password" id="apiKey" class="input" bind:value={diffRequest.apiKey} placeholder="Enter your API Key">
+		</label>
+		<label class="input-group input-group-vertical">
+			<span class="text-primary">Start Date</span> 
+			<input type="date" id="startDate" class="input" bind:value={diffRequest.startDate}>
+		</label>
+		<label class="input-group input-group-vertical">
+			<span class="text-primary">End Date</span> 
+			<input type="date" id="endDate" class="input" bind:value={diffRequest.endDate}>
+		</label>
+		<label class="input-group input-group-vertical">
+			<span class="text-primary">Hours in Workday</span> 
+			<input type="number" id="hoursInWorkday" class="input" bind:value={diffRequest.workdayLength}>
+		</label>
+		<button class="btn btn-primary btn-outline" on:click={getDiff}>Have I worked enough?</button> 
+
+		<p>
+			&nbsp;&nbsp;{ diffDisplay.expectedHours } (Expected)
+		  </p>
+		  <p>
+			- { diffDisplay.workedInHours } (Logged)
+		  </p>
+		  <p>
+			= { diffDisplay.diffHours } (Diff)
+		  </p>
 	</div>
 </div>
