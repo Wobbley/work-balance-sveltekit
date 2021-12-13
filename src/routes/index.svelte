@@ -65,16 +65,16 @@
 		{#if diffDisplay.diffHours}
 		<div class="w-full shadow stats">
 			<div class="stat place-items-center place-content-center">
+				<div class="stat-title">Difference</div> 
+				<div class="stat-value">{diffDisplay.diffHours}</div> 
+			</div>
+			<div class="stat place-items-center place-content-center">
 			  <div class="stat-title">Worked</div> 
 			  <div class="stat-value">{diffDisplay.workedInHours}</div> 
 			</div>
 			<div class="stat place-items-center place-content-center">
 				<div class="stat-title">Expected</div> 
 				<div class="stat-value">{diffDisplay.expectedHours}</div> 
-			</div>
-			<div class="stat place-items-center place-content-center">
-				<div class="stat-title">Difference</div> 
-				<div class="stat-value">{diffDisplay.diffHours}</div> 
 			</div>
 		</div>
 		{/if}
