@@ -5,3 +5,9 @@ export type DiffRequest = {
     workspaceId: string;
     apiKey: string;
 }
+
+export type DiffResponse = {
+    workedHours: number
+    expectedHours: number
+    diffHours: number
+}

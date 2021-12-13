@@ -1,15 +1,15 @@
 <script lang="ts">
-	import { DateTime } from "luxon";
-	import { fetchDiff } from '$lib/diffclient';
+	import { fetchDiff } from '$lib/fetchDiff';
 	import { humanReadableTime } from '$lib/timeUtils';
 	import type { DiffRequest } from '$lib/types';
 
 	let endDate = new Date()
 	let startDate = new Date(endDate);
 	startDate.setDate(1);
+	
 	let diffRequest: DiffRequest = {
-		startDate: DateTime.fromJSDate(startDate).toISODate(),
-		endDate: DateTime.fromJSDate(endDate).toISODate(),
+		startDate: startDate.toISOString().substring(0, 10),
+		endDate: endDate.toISOString().substring(0, 10),
 		workdayLength: 7.5,
 		workspaceId: undefined,
 		apiKey: undefined
@@ -26,11 +26,10 @@
 		loading = true
         fetchDiff(diffRequest)
             .then(diffData => {
-                diffDisplay.workedInHours = humanReadableTime(diffData.workedInHours)
+                diffDisplay.workedInHours = humanReadableTime(diffData.workedHours)
                 diffDisplay.expectedHours = humanReadableTime(diffData.expectedHours)
                 diffDisplay.diffHours = humanReadableTime(diffData.diffHours)
                 loading = false;
-				console.log(diffData)
             })
             .catch(err => {
                 console.log(err)
@@ -40,37 +39,44 @@
 </script>
 
 <div class="flex flex-col items-center">
-	<div class="w-1/2 form-control space-y-1 ">
+	<div class="w-1/2 form-control">
 		<label class="input-group input-group-vertical input-group">
-			<span class="text-primary">Workspace ID</span> 
+			<span>Workspace ID</span> 
 			<input type="text" id="workspaceId" class="input" bind:value={diffRequest.workspaceId} placeholder="Enter your workspace ID"/>
 		</label>
 		<label class="input-group input-group-vertical">
-			<span class="text-primary">API Key</span> 
+			<span>API Key</span> 
 			<input type="password" id="apiKey" class="input" bind:value={diffRequest.apiKey} placeholder="Enter your API Key">
 		</label>
 		<label class="input-group input-group-vertical">
-			<span class="text-primary">Start Date</span> 
+			<span>Start Date</span> 
 			<input type="date" id="startDate" class="input" bind:value={diffRequest.startDate}>
 		</label>
 		<label class="input-group input-group-vertical">
-			<span class="text-primary">End Date</span> 
+			<span>End Date</span> 
 			<input type="date" id="endDate" class="input" bind:value={diffRequest.endDate}>
 		</label>
 		<label class="input-group input-group-vertical">
-			<span class="text-primary">Hours in Workday</span> 
+			<span>Hours in Workday</span> 
 			<input type="number" id="hoursInWorkday" class="input" bind:value={diffRequest.workdayLength}>
 		</label>
-		<button class="btn btn-primary btn-outline" on:click={getDiff}>Have I worked enough?</button> 
+		<button class:loading="{loading}" class="btn btn-primary btn-outline" on:click={getDiff}>Get Hours</button> 
 
-		<p>
-			&nbsp;&nbsp;{ diffDisplay.expectedHours } (Expected)
-		  </p>
-		  <p>
-			- { diffDisplay.workedInHours } (Logged)
-		  </p>
-		  <p>
-			= { diffDisplay.diffHours } (Diff)
-		  </p>
+		{#if diffDisplay.diffHours}
+		<div class="w-full shadow stats">
+			<div class="stat place-items-center place-content-center">
+			  <div class="stat-title">Worked</div> 
+			  <div class="stat-value">{diffDisplay.workedInHours}</div> 
+			</div>
+			<div class="stat place-items-center place-content-center">
+				<div class="stat-title">Expected</div> 
+				<div class="stat-value">{diffDisplay.expectedHours}</div> 
+			</div>
+			<div class="stat place-items-center place-content-center">
+				<div class="stat-title">Difference</div> 
+				<div class="stat-value">{diffDisplay.diffHours}</div> 
+			</div>
+		</div>
+		{/if}
 	</div>
 </div>

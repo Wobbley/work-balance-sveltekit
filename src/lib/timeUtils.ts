@@ -1,7 +1,5 @@
-import type { DateTime } from "luxon";
-
-export function humanReadableTime(hoursAsDecimal) {
-    let sign = (hoursAsDecimal >= 0) ? 1 : -1;
+export function humanReadableTime(hoursAsDecimal: number) {
+    const sign = (hoursAsDecimal >= 0) ? 1 : -1;
     hoursAsDecimal = hoursAsDecimal * sign;
     const hour = Math.floor(hoursAsDecimal);
     let decimalPart = hoursAsDecimal - hour;
@@ -12,19 +10,18 @@ export function humanReadableTime(hoursAsDecimal) {
     if (minute.length < 2) {
         minute = '0' + minute;
     }
-    let finalSign = sign === 1 ? '' : '-';
+    const finalSign = sign === 1 ? '' : '-';
 
     return finalSign + hour + ':' + minute;
 }
 
-export function getBusinessDaysCount(startDate: DateTime, endDate: DateTime): number {
+export function workDays(startDate: Date, endDate: Date): number {
     let count = 0;
-    let curDate = startDate
+    const curDate = new Date(startDate.getTime());
     while (curDate <= endDate) {
-        const dayOfWeek = curDate.weekday
-        if(dayOfWeek !== 6 && dayOfWeek !== 7) count++;
-        curDate = curDate.plus({days: 1})
+        const dayOfWeek = curDate.getDay();
+        if(dayOfWeek !== 0 && dayOfWeek !== 6) count++;
+        curDate.setDate(curDate.getDate() + 1);
     }
-    console.log(count)
     return count;
 }
