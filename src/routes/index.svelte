@@ -35,8 +35,11 @@
                 console.log(err)
             })
     }
-	
 </script>
+
+<svelte:head>
+	<title>Work Balance</title>
+</svelte:head>
 
 <div class="flex flex-col items-center">
 	<div class="w-1/2 form-control">
