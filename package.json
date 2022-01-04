@@ -13,7 +13,7 @@
   "devDependencies": {
     "@sveltejs/adapter-vercel": "next",
     "@sveltejs/kit": "next",
-    "@types/luxon": "^2.0.7",
+    "@types/luxon": "^2.0.8",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "@typescript-eslint/parser": "^4.31.1",
     "autoprefixer": "^10.4.0",
