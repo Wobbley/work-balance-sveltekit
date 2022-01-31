@@ -31,7 +31,7 @@
 	"type": "module",
 	"dependencies": {
 		"clockify-ts": "^1.2107.12",
-		"daisyui": "^1.25.3",
+		"daisyui": "^1.25.4",
 		"date-holidays": "^3.14.2"
 	}
 }
