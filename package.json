@@ -29,7 +29,7 @@
 		"typescript": "^4.6.2",
 		"clockify-ts": "^1.2107.12",
 		"daisyui": "^2.8.0",
-		"date-holidays": "^3.14.3"
+		"date-holidays": "^3.14.4"
 	},
 	"type": "module"
 }
