@@ -1,10 +1,9 @@
 import Clockify, { RequestSummaryReportGroupsEnum } from 'clockify-ts';
 import type { RequestSummaryReportType } from 'clockify-ts';
-import type { EndpointOutput } from '@sveltejs/kit';
 import type { DiffRequest, DiffResponse } from '$lib/types';
 import { workDays } from '$lib/timeUtils';
 
-export async function post({ request }): Promise<EndpointOutput> {
+export async function post({ request }): Promise<DiffResponse> {
 	const clockifyRequest = await request.json() as DiffRequest;
 	const startDate = new Date(clockifyRequest.startDate);
 	const endDate = new Date(clockifyRequest.endDate);
