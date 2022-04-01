@@ -3,7 +3,7 @@ import type { RequestSummaryReportType } from 'clockify-ts';
 import type { DiffRequest, DiffResponse } from '$lib/types';
 import { workDays } from '$lib/timeUtils';
 
-export async function post({ request }): Promise<DiffResponse> {
+export async function post({ request }) {
 	const clockifyRequest = await request.json() as DiffRequest;
 	const startDate = new Date(clockifyRequest.startDate);
 	const endDate = new Date(clockifyRequest.endDate);
