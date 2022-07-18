@@ -1,7 +1,7 @@
 import type { DiffRequest, DiffResponse } from '$lib/types';
 import { workDays } from '$lib/timeUtils';
 
-export async function post({ request }) {
+export async function POST({ request }) {
 	const baseUrl = "https://reports.api.clockify.me/v1"
 	const clockifyRequest = await request.json() as DiffRequest;
 	const startDate = new Date(clockifyRequest.startDate);
