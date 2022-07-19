@@ -104,13 +104,13 @@
     picomatch "^2.2.2"
 
 "@sveltejs/adapter-auto@next":
-  version "1.0.0-next.61"
-  resolved "https://registry.yarnpkg.com/@sveltejs/adapter-auto/-/adapter-auto-1.0.0-next.61.tgz#7e399df60247611183bd4ee28e0b5ad61fd4ee9f"
-  integrity sha512-0DwAx4BHhbY4irMx6GyT7cDhH22udUoWkeVHEIhmDtCAfjjzlqfWmyY9qt46Gjp8EApIBrXD2rJB6lJy4jYurQ==
+  version "1.0.0-next.62"
+  resolved "https://registry.yarnpkg.com/@sveltejs/adapter-auto/-/adapter-auto-1.0.0-next.62.tgz#7103ee438dde6f6fc22b51266bf6569a32acb7d4"
+  integrity sha512-+yZZ3SzjBQEXXuIs12DfqgRmV9CQSCcEnYvaQ4R2LFyAxUOiGUJt2DtRJIELF+2dwHVxnvrR2CssqaNJ7J9bAA==
   dependencies:
     "@sveltejs/adapter-cloudflare" "1.0.0-next.29"
     "@sveltejs/adapter-netlify" "1.0.0-next.69"
-    "@sveltejs/adapter-vercel" "1.0.0-next.63"
+    "@sveltejs/adapter-vercel" "1.0.0-next.64"
 
 "@sveltejs/adapter-cloudflare@1.0.0-next.29":
   version "1.0.0-next.29"
@@ -131,10 +131,10 @@
     set-cookie-parser "^2.4.8"
     tiny-glob "^0.2.9"
 
-"@sveltejs/adapter-vercel@1.0.0-next.63":
-  version "1.0.0-next.63"
-  resolved "https://registry.yarnpkg.com/@sveltejs/adapter-vercel/-/adapter-vercel-1.0.0-next.63.tgz#ffbd8f21845272fda4db88648ea6d24351ea65cf"
-  integrity sha512-awb1zmT+hAAHv+x7gOY/8Ch64spxKX6H/DQb+S/VGYRQ6i1WvNgsBUF9vk88KR//7tUY8y/xiTLAb99hJ57WhA==
+"@sveltejs/adapter-vercel@1.0.0-next.64":
+  version "1.0.0-next.64"
+  resolved "https://registry.yarnpkg.com/@sveltejs/adapter-vercel/-/adapter-vercel-1.0.0-next.64.tgz#e1efe2cb22ac0f006dc42edfd6ac6f6fa9cce329"
+  integrity sha512-UpDQAm3upsKsA6fca3+lOntHaX77EnL0OBYewOycdicJqlnoLq/DDr44xNeSjtW95Y8CVqALMxkPS6oMPipAYQ==
   dependencies:
     "@vercel/nft" "^0.20.0"
     esbuild "^0.14.48"
