@@ -140,9 +140,9 @@
     esbuild "^0.14.48"
 
 "@sveltejs/kit@next":
-  version "1.0.0-next.377"
-  resolved "https://registry.yarnpkg.com/@sveltejs/kit/-/kit-1.0.0-next.377.tgz#e74565b35e78d068a26640a3b5492e70dd2787c5"
-  integrity sha512-DH2v2yUBUuDZ7vzjPXUd/yt1AMR3BIkZN0ubLAvS2C+q5Wbvk7ZvAJhfPZ3OYc3ZpQXe4ZGEcptOjvEYvd1lLA==
+  version "1.0.0-next.379"
+  resolved "https://registry.yarnpkg.com/@sveltejs/kit/-/kit-1.0.0-next.379.tgz#734273221afeb4f6cda9d8d323f6fed4230157dd"
+  integrity sha512-mhy0GW4KUJ3tq6mDMF0fs/B6Nh2oJM6ZAA2fwilTOdqzhKD3f2WJLH9RXx1Z5/8eodFeQsURTPRn5a0r3QAZew==
   dependencies:
     "@sveltejs/vite-plugin-svelte" "^1.0.1"
     chokidar "^3.5.3"
