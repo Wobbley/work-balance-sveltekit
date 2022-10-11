@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { Card, FloatingLabelInput, Button, Label, Input } from 'flowbite-svelte';
-	import { fetchDiff } from '$lib/fetchDiff';
+	import { Card, FloatingLabelInput, Button } from 'flowbite-svelte';
 	import { humanReadableTime } from '$lib/timeUtils';
 	import type { DiffRequest } from '$lib/types';
 	import { enhance } from '$app/forms';
