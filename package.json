@@ -16,7 +16,7 @@
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
 		"@typescript-eslint/eslint-plugin": "5.40.0",
-		"@typescript-eslint/parser": "5.40.0",
+		"@typescript-eslint/parser": "5.40.1",
 		"autoprefixer": "10.4.12",
 		"classnames": "2.3.2",
 		"date-holidays": "3.16.7",
