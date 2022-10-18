@@ -29,7 +29,7 @@
 	<NavUl {hidden}>
 		<NavLi href="/" active={true}>Home</NavLi>
 		{#if $page.data.session}
-			<NavLi href="/" active={true}>Account</NavLi>
+			<NavLi href="/account" active={true}>Account</NavLi>
 		{:else}
 			<NavLi href="login" active={true}>Login</NavLi>
 		{/if}

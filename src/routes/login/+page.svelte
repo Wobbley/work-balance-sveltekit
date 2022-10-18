@@ -14,7 +14,7 @@
 	};
 </script>
 
-<div>
+<div class="flex flex-col items-center mt-2">
 	<form method="post" use:enhance={handleSubmit}>
 		<div class="mb-6">
 			<Label for="input-group-1" class="block mb-2">Your Email</Label>
