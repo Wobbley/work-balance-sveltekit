@@ -4,7 +4,6 @@
     import type { ActionData } from './$types';
 
 	export let form: ActionData;
-	let loading = false;
 
 	const handleSubmit: SubmitFunction = () => {
 		loading = true;

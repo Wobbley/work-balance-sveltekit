@@ -1,19 +1,39 @@
+<!-- src/routes/+layout.svelte -->
 <script lang="ts">
 	import '../app.postcss';
-	import '$lib/db';
-	import { startSupabaseSessionSync } from '@supabase/auth-helpers-sveltekit';
-	import { invalidateAll } from '$app/navigation';
+	import { supabaseClient } from '$lib/db';
+	import { invalidate } from '$app/navigation';
+	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
+	import { Navbar, NavHamburger, NavUl, NavLi } from 'flowbite-svelte';
 
-	// this sets up automatic token refreshing
-	startSupabaseSessionSync({
-		page,
-		handleRefresh: () => invalidateAll()
+	onMount(() => {
+		const {
+			data: { subscription }
+		} = supabaseClient.auth.onAuthStateChange(() => {
+			invalidate('supabase:auth');
+		});
+
+		return () => {
+			subscription.unsubscribe();
+		};
 	});
 </script>
 
 <svelte:head>
 	<title>Work Balance</title>
 </svelte:head>
+
+<Navbar let:hidden let:toggle>
+	<NavHamburger on:click={toggle} />
+	<NavUl {hidden}>
+		<NavLi href="/" active={true}>Home</NavLi>
+		{#if $page.data.session}
+			<NavLi href="/" active={true}>Account</NavLi>
+		{:else}
+			<NavLi href="login" active={true}>Login</NavLi>
+		{/if}
+	</NavUl>
+</Navbar>
 
 <slot />
