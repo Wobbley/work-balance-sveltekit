@@ -12,7 +12,6 @@ export const actions = {
             endDate: data.get('endDate'),
             workdayLength: data.get('workdayLength'),
         }
-        console.log(clockifyRequest)
 		const startDate = new Date(clockifyRequest.startDate);
 		const endDate = new Date(clockifyRequest.endDate);
 		endDate.setHours(23, 59, 59);
