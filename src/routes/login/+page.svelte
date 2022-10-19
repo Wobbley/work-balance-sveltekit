@@ -1,14 +1,11 @@
 <script lang="ts">
 	import { applyAction, enhance, type SubmitFunction } from '$app/forms';
 	import { Label, Input, Button } from 'flowbite-svelte';
-    import type { ActionData } from './$types';
 
-	export let form: ActionData;
+	export let form;
 
 	const handleSubmit: SubmitFunction = () => {
-		loading = true;
 		return async ({ result }) => {
-			loading = false;
 			await applyAction(result);
 		};
 	};

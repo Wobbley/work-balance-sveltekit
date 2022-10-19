@@ -10,23 +10,27 @@ export const actions: Actions = {
 			throw error(403, { message: 'Unauthorized' });
 		}
 		const formData = await request.formData();
-		const { updatedProfile, writeError } = await supabaseClient
+		const { data, writeError } = await supabaseClient
 			.from('profiles')
 			.upsert({
-				uuid: session.user.id,
+				id: session.user.id,
 				workspace_id: formData.get('workspaceId'),
 				api_key: formData.get('apiKey')
 			})
-			.select();
+			.select()
+			.limit(1)
+			.single();
+
+		console.log(data)
 
 		if (writeError) {
 			return invalid(500, {
 				supabaseErrorMessage: writeError.message
 			});
 		}
-
         return {
-            success: true
+            success: true,
+			updatedProfile: data
         }
 	}
 };
