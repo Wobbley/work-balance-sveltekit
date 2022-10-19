@@ -6,10 +6,9 @@ export const load = async (event) => {
 	if (!session) {
 		throw redirect(303, '/');
 	}
-	const { data: tableData } = await supabaseClient.from('profiles').select('*').limit(1).maybeSingle();
+	const { data: profileData } = await supabaseClient.from('profiles').select('*').limit(1).maybeSingle();
 
 	return {
-		user: session.user,
-		tableData
+		profileData
 	};
 };
