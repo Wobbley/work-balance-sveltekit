@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { FloatingLabelInput, Button } from 'flowbite-svelte';
-	import { enhance } from '$app/forms';
 	import type { ActionData } from '.svelte-kit/types/src/routes/$types';
 
 	export let form: ActionData;
@@ -9,12 +8,12 @@
 
 	let workspaceId: string;
 	let apiKey: string;
+	let hourlyRateAfterTax: string;
 
 	if (data?.profileData) {
 		workspaceId = data.profileData.workspace_id;
 		apiKey = data.profileData.api_key;
 	}
-
 </script>
 
 {#if !$page.data.session}

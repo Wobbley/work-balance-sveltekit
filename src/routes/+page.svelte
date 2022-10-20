@@ -6,6 +6,7 @@
 	import type { ActionData } from './$types';
 
 	export let form: ActionData;
+	export let data;
 
 	let endDate = new Date();
 	let startDate = new Date(endDate);
@@ -18,6 +19,11 @@
 		workspaceId: undefined,
 		apiKey: undefined
 	};
+
+	if (data?.profileData) {
+		diffRequest.workspaceId = data.profileData.workspace_id;
+		diffRequest.apiKey = data.profileData.api_key;
+	}
 </script>
 
 <div class="flex flex-col items-center mt-2">
