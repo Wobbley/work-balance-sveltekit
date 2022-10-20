@@ -8,7 +8,6 @@
 
 	let workspaceId: string;
 	let apiKey: string;
-	let hourlyRateAfterTax: string;
 
 	if (data?.profileData) {
 		workspaceId = data.profileData.workspace_id;
