@@ -28,7 +28,7 @@
 
 <div class="flex flex-col items-center mt-2">
 	<Card padding="sm">
-		<form class="flex flex-col space-y-2.5" method="POST" use:enhance>
+		<form class="flex flex-col space-y-2.5" method="POST">
 			<FloatingLabelInput
 				id="workspaceId"
 				name="workspaceId"
