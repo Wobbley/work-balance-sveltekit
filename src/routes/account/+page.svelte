@@ -1,9 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { FloatingLabelInput, Button } from 'flowbite-svelte';
-	import type { ActionData } from '.svelte-kit/types/src/routes/$types';
 
-	export let form: ActionData;
 	export let data;
 
 	let workspaceId: string;
