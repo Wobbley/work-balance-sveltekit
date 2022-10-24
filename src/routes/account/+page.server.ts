@@ -22,8 +22,6 @@ export const actions: Actions = {
 			.limit(1)
 			.single();
 
-		console.log(data)
-
 		if (writeError) {
 			return invalid(500, {
 				supabaseErrorMessage: writeError.message
