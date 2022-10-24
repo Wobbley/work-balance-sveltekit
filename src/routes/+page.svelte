@@ -20,10 +20,18 @@
 		apiKey: undefined
 	};
 
+	let payout: number;
+
 	if (data?.profileData) {
 		diffRequest.workspaceId = data.profileData.workspace_id;
 		diffRequest.apiKey = data.profileData.api_key;
 	}
+
+	$: if (data?.profileData.overtime_hourly_rate_post_tax && form?.diffResponse.diffHours) {
+		payout = form.diffResponse.diffHours * data.profileData.overtime_hourly_rate_post_tax;
+	}
+
+	
 </script>
 
 <div class="flex flex-col items-center mt-2">
@@ -94,10 +102,20 @@
 				id="diffHours"
 				name="diffHours"
 				type="text"
-				label="Difference"
+				label="Difference (Hours)"
 				value={humanReadableTime(form.diffResponse.diffHours)}
 				disabled
-				color = {form.diffResponse.diffHours > 0 ? 'green' : 'red'}
+				color={form.diffResponse.diffHours > 0 ? 'green' : 'red'}
+			/>
+			<FloatingLabelInput
+				style="filled"
+				id="diffPayout"
+				name="diffPayout"
+				type="text"
+				label="Difference (Payout)"
+				value={payout + ' NOK'}
+				disabled
+				color={form.diffResponse.diffHours > 0 ? 'green' : 'red'}
 			/>
 		</Card>
 	{/if}

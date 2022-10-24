@@ -8,10 +8,12 @@
 
 	let workspaceId: string;
 	let apiKey: string;
+	let overtimeHourlyRatePostTax: number;
 
 	if (data?.profileData) {
 		workspaceId = data.profileData.workspace_id;
 		apiKey = data.profileData.api_key;
+		overtimeHourlyRatePostTax = data.profileData.overtime_hourly_rate_post_tax;
 	}
 </script>
 
@@ -33,6 +35,14 @@
 				type="password"
 				label="API Key"
 				bind:value={apiKey}
+			/>
+			<FloatingLabelInput
+				id="overtimeHourlyRatePostTax"
+				name="overtimeHourlyRatePostTax"
+				type="number"
+				step="0.01"
+				label="Overtime Rate"
+				bind:value={overtimeHourlyRatePostTax}
 			/>
 			<Button type="submit">Save Credentials</Button>
 		</form>

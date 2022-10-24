@@ -15,7 +15,8 @@ export const actions: Actions = {
 			.upsert({
 				id: session.user.id,
 				workspace_id: formData.get('workspaceId'),
-				api_key: formData.get('apiKey')
+				api_key: formData.get('apiKey'),
+				overtime_hourly_rate_post_tax: formData.get('overtimeHourlyRatePostTax'),
 			})
 			.select()
 			.limit(1)
