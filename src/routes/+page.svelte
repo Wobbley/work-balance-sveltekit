@@ -27,7 +27,7 @@
 		diffRequest.apiKey = data.profileData.api_key;
 	}
 
-	$: if (data?.profileData.overtime_hourly_rate_post_tax && form?.diffResponse.diffHours) {
+	$: if (data?.profileData?.overtime_hourly_rate_post_tax && form?.diffResponse?.diffHours) {
 		payout = form.diffResponse.diffHours * data.profileData.overtime_hourly_rate_post_tax;
 	}
 
