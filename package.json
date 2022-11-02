@@ -16,7 +16,7 @@
 		"@popperjs/core": "2.11.6",
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
-		"@supabase/auth-helpers-sveltekit": "^0.8.2",
+		"@supabase/auth-helpers-sveltekit": "^0.8.4",
 		"@typescript-eslint/eslint-plugin": "5.40.1",
 		"@typescript-eslint/parser": "5.40.1",
 		"autoprefixer": "10.4.12",
