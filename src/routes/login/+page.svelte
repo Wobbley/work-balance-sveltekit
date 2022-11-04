@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { applyAction, enhance, type SubmitFunction } from '$app/forms';
-	import { Label, Input, Button } from 'flowbite-svelte';
+	import { Alert, Label, Input, Button } from 'flowbite-svelte';
 
 	export let form;
 
@@ -13,9 +13,9 @@
 
 <div class="flex flex-col items-center mt-2">
 	<form method="post" use:enhance={handleSubmit}>
-		<div class="mb-6">
+		<div class="flex flex-col items-center mt-2">
 			<Label for="input-group-1" class="block mb-2">Your Email</Label>
-			<Input id="email" name="email" type="email" placeholder="name@flowbite.com">
+			<Input class="mb-2" id="email" name="email" type="email" placeholder="name@flowbite.com">
 				<svg
 					slot="left"
 					aria-hidden="true"
@@ -28,13 +28,13 @@
 					/></svg
 				>
 			</Input>
+			<Button class="mb-2" type="submit">Get Hours</Button>
 		</div>
-		<Button type="submit">Get Hours</Button>
 	</form>
 	{#if form?.error}
-		<div class="block notification is-danger">{form.error}</div>
+		<Alert color="red">{form.error}</Alert>
 	{/if}
 	{#if form?.message}
-		<div class="block notification is-primary">{form.message}</div>
+		<Alert color="green">{form.message}</Alert>
 	{/if}
 </div>

@@ -2,7 +2,6 @@
 	import { Card, FloatingLabelInput, Button } from 'flowbite-svelte';
 	import { humanReadableTime } from '$lib/timeUtils';
 	import type { DiffRequest } from '$lib/types';
-	import { enhance } from '$app/forms';
 	import type { ActionData } from './$types';
 
 	export let form: ActionData;
@@ -20,7 +19,7 @@
 		apiKey: undefined
 	};
 
-	let payout: number;
+	let payout: number = 0;
 
 	if (data?.profileData) {
 		diffRequest.workspaceId = data.profileData.workspace_id;
@@ -105,8 +104,9 @@
 				label="Difference (Hours)"
 				value={humanReadableTime(form.diffResponse.diffHours)}
 				disabled
-				color={form.diffResponse.diffHours > 0 ? 'green' : 'red'}
+				color={form.diffResponse.diffHours >= 0 ? 'green' : 'red'}
 			/>
+			{#if data?.profileData?.overtime_hourly_rate_post_tax}
 			<FloatingLabelInput
 				style="filled"
 				id="diffPayout"
@@ -115,8 +115,9 @@
 				label="Difference (Payout)"
 				value={payout + ' NOK'}
 				disabled
-				color={form.diffResponse.diffHours > 0 ? 'green' : 'red'}
+				color={form.diffResponse.diffHours >= 0 ? 'green' : 'red'}
 			/>
+			{/if}
 		</Card>
 	{/if}
 </div>
