@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Card, FloatingLabelInput, Button } from 'flowbite-svelte';
-	import { humanReadableTime } from '$lib/timeUtils';
+	import DiffResults  from '$lib/DiffResults.svelte';
 	import type { DiffRequest } from '$lib/types';
 	import type { ActionData } from './$types';
 
@@ -19,18 +19,10 @@
 		apiKey: undefined
 	};
 
-	let payout: number = 0;
-
 	if (data?.profileData) {
 		diffRequest.workspaceId = data.profileData.workspace_id;
 		diffRequest.apiKey = data.profileData.api_key;
 	}
-
-	$: if (data?.profileData?.overtime_hourly_rate_post_tax && form?.diffResponse?.diffHours) {
-		payout = form.diffResponse.diffHours * data.profileData.overtime_hourly_rate_post_tax;
-	}
-
-	
 </script>
 
 <div class="flex flex-col items-center mt-2">
@@ -77,47 +69,6 @@
 	</Card>
 
 	{#if form?.success}
-		<Card padding="sm">
-			<FloatingLabelInput
-				style="filled"
-				id="workedInHours"
-				name="workedInHours"
-				type="text"
-				label="Worked"
-				value={humanReadableTime(form.diffResponse.workedHours)}
-				disabled
-			/>
-			<FloatingLabelInput
-				style="filled"
-				id="expectedHours"
-				name="expectedHours"
-				type="text"
-				label="Expected"
-				value={humanReadableTime(form.diffResponse.expectedHours)}
-				disabled
-			/>
-			<FloatingLabelInput
-				style="filled"
-				id="diffHours"
-				name="diffHours"
-				type="text"
-				label="Difference (Hours)"
-				value={humanReadableTime(form.diffResponse.diffHours)}
-				disabled
-				color={form.diffResponse.diffHours >= 0 ? 'green' : 'red'}
-			/>
-			{#if data?.profileData?.overtime_hourly_rate_post_tax}
-			<FloatingLabelInput
-				style="filled"
-				id="diffPayout"
-				name="diffPayout"
-				type="text"
-				label="Difference (Payout)"
-				value={payout + ' NOK'}
-				disabled
-				color={form.diffResponse.diffHours >= 0 ? 'green' : 'red'}
-			/>
-			{/if}
-		</Card>
+		<DiffResults diffResponse="{form.diffResponse}" hourlyRate="{data?.profileData?.overtime_hourly_rate_post_tax}" />
 	{/if}
 </div>
