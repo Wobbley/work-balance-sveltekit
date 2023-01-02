@@ -22,7 +22,7 @@
 		"classnames": "2.3.2",
 		"date-holidays": "3.16.13",
 		"eslint": "8.30.0",
-		"eslint-config-prettier": "8.5.0",
+		"eslint-config-prettier": "8.6.0",
 		"eslint-plugin-svelte3": "4.0.0",
 		"flowbite": "1.5.5",
 		"flowbite-svelte": "0.29.7",
