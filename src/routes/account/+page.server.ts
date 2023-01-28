@@ -1,5 +1,5 @@
 import { getSupabase } from '@supabase/auth-helpers-sveltekit';
-import { error, invalid } from '@sveltejs/kit';
+import { error, fail } from '@sveltejs/kit';
 
 export const actions: Actions = {
 	default: async (event) => {
@@ -23,7 +23,7 @@ export const actions: Actions = {
 			.single();
 
 		if (writeError) {
-			return invalid(500, {
+			return fail(500, {
 				supabaseErrorMessage: writeError.message
 			});
 		}
