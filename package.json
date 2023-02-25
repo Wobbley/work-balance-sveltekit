@@ -16,7 +16,7 @@
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.7.1",
 		"@supabase/auth-helpers-sveltekit": "^0.8.7",
-		"@typescript-eslint/eslint-plugin": "5.48.0",
+		"@typescript-eslint/eslint-plugin": "5.53.0",
 		"@typescript-eslint/parser": "5.53.0",
 		"autoprefixer": "10.4.13",
 		"classnames": "2.3.2",
