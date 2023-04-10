@@ -12,7 +12,7 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
-		"@popperjs/core": "2.11.6",
+		"@popperjs/core": "2.11.7",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.14.0",
 		"@supabase/auth-helpers-sveltekit": "^0.8.7",
