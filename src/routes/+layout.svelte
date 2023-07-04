@@ -1,22 +1,25 @@
-<!-- src/routes/+layout.svelte -->
 <script lang="ts">
-	import '../app.postcss';
-	import { supabaseClient } from '$lib/db';
 	import { invalidate } from '$app/navigation';
 	import { onMount } from 'svelte';
+	import type { LayoutData } from './$types';
 	import { page } from '$app/stores';
+
 	import { Navbar, NavHamburger, NavUl, NavLi } from 'flowbite-svelte';
+
+	export let data: LayoutData;
+
+	$: ({ supabase, session } = data);
 
 	onMount(() => {
 		const {
 			data: { subscription }
-		} = supabaseClient.auth.onAuthStateChange(() => {
-			invalidate('supabase:auth');
+		} = supabase.auth.onAuthStateChange((event, _session) => {
+			if (_session?.expires_at !== session?.expires_at) {
+				invalidate('supabase:auth');
+			}
 		});
 
-		return () => {
-			subscription.unsubscribe();
-		};
+		return () => subscription.unsubscribe();
 	});
 </script>
 
