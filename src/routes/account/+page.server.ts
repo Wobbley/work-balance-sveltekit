@@ -1,16 +1,15 @@
-import { getSupabase } from '@supabase/auth-helpers-sveltekit';
 import { error, fail } from '@sveltejs/kit';
 
 export const actions: Actions = {
-	default: async (event) => {
+	default: async ({ event, locals: { supabase, getSession } }) => {
 		const { request } = event;
-		const { session, supabaseClient } = await getSupabase(event);
+		const session = await getSession()
 		if (!session) {
 			// the user is not signed in
 			throw error(403, { message: 'Unauthorized' });
 		}
 		const formData = await request.formData();
-		const { data, writeError } = await supabaseClient
+		const { data, writeError } = await supabase
 			.from('profiles')
 			.upsert({
 				id: session.user.id,
@@ -27,9 +26,9 @@ export const actions: Actions = {
 				supabaseErrorMessage: writeError.message
 			});
 		}
-        return {
-            success: true,
+		return {
+			success: true,
 			updatedProfile: data
-        }
+		}
 	}
 };
