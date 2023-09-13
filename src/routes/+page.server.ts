@@ -2,16 +2,18 @@ import type { DiffRequest, DiffResponse } from '$lib/types';
 import { workDays } from '$lib/time-utils';
 
 export const actions = {
-	default: async ({request}) => {
+	default: async ({ request }) => {
 		const baseUrl = 'https://reports.api.clockify.me/v1';
-		const data = await request.formData()
-        const clockifyRequest: DiffRequest = {
-            apiKey: data.get('apiKey') as string,
-            workspaceId: data.get('workspaceId') as string,
-            startDate: data.get('startDate') as string,
-            endDate: data.get('endDate') as string,
-            workdayLength: parseFloat(data.get('workdayLength') as string)
-        }
+		const data = await request.formData();
+
+		const clockifyRequest: DiffRequest = {
+			apiKey: data.get('apiKey') as string,
+			workspaceId: data.get('workspaceId') as string,
+			startDate: data.get('startDate') as string,
+			endDate: data.get('endDate') as string,
+			workdayLength: parseFloat(data.get('workdayLength') as string)
+		};
+
 		const startDate = new Date(clockifyRequest.startDate);
 		const endDate = new Date(clockifyRequest.endDate);
 		endDate.setHours(23, 59, 59);
@@ -44,7 +46,7 @@ export const actions = {
 
 		return {
 			success: true,
-            diffResponse: response
+			diffResponse: response
 		};
 	}
 };
