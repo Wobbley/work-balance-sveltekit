@@ -4,10 +4,10 @@
 	import { IconLogin } from '@tabler/icons-svelte';
 	import { invalidate } from '$app/navigation';
 	import { onMount } from 'svelte';
+	import type { LayoutData } from './$types';
 
-	export let data;
+	export let data: LayoutData;
 
-	let { supabase, session } = data;
 	$: ({ supabase, session } = data);
 
 	onMount(() => {
