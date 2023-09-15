@@ -1,5 +1,4 @@
 <!-- https://github.com/skeletonlabs/skeleton/blob/54f4ecedabf2be6d94a670b56dc8821095ca3fc9/sites/skeleton.dev/src/routes/(inner)/elements/forms/%2Bpage.svelte#L465 -->
-
 <script lang="ts">
 	import type { DiffRequest } from '$lib/types';
 	import DiffResults from '$lib/DiffResults.svelte';
