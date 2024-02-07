@@ -1,5 +1,6 @@
 <script lang="ts">
 	import {
+		IconClockDollar,
 		IconIdBadge2,
 		IconKey
 	} from '@tabler/icons-svelte';
@@ -25,7 +26,7 @@
 		</div>
 		<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
 			<div class="input-group-shim">
-				<IconKey />
+				<IconClockDollar />
 			</div>
 			<input
 				id="overtimeHourlyRatePostTax"
