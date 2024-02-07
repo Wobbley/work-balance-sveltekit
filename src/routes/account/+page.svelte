@@ -32,6 +32,7 @@
 				name="overtimeHourlyRatePostTax"
 				type="number"
 				step="0.01"
+				placeholder="Overtime Rate"
 				bind:value={overtimeHourlyRatePostTax}
 			/>
 		</div>
