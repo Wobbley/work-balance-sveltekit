@@ -1,8 +1,7 @@
 import { fail } from '@sveltejs/kit';
 
-export const actions  = {
-	default: async ({ url, request,locals: { supabase } }) => {
-
+export const actions = {
+	default: async ({ url, request, locals: { supabase } }) => {
 		const formData = await request.formData();
 		const email = formData.get('email') as string;
 
