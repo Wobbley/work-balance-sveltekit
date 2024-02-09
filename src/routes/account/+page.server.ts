@@ -1,33 +1,49 @@
-import { error, fail } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
+
+export const load = async ({ locals: { supabase, getSession } }) => {
+	const session = await getSession()
+
+	if (!session) {
+		throw redirect(303, '/')
+	}
+	const { data: profile } = await supabase
+		.from('profiles')
+		.select(`workspace_id, api_key, overtime_hourly_rate_post_tax`)
+		.eq('id', session.user.id)
+		.single()
+
+	console.log(profile)
+	return { session, profile }
+}
 
 export const actions = {
-	default: async ({ request, locals: { supabase } }) => {
-		const { data: { user } } = await supabase.auth.getUser()
-		if (!user) {
-			// the user is not signed in
-			throw error(403, { message: 'Unauthorized' });
-		}
-		const formData = await request.formData();
-		const { data, writeError } = await supabase
-			.from('profiles')
-			.upsert({
-				id: user.id,
-				workspace_id: formData.get('workspaceId'),
-				api_key: formData.get('apiKey'),
-				overtime_hourly_rate_post_tax: formData.get('overtimeHourlyRatePostTax'),
-			})
-			.select()
-			.limit(1)
-			.single();
+	default: async ({ request, locals: { supabase, getSession } }) => {
 
-		if (writeError) {
+		const session = await getSession()
+		const formData = await request.formData()
+		const workspaceId = formData.get('workspaceId')
+		const apiKey = formData.get('apiKey')
+		const overtimeHourlyRatePostTax = formData.get('overtimeHourlyRatePostTax')
+
+		const { error } = await supabase.from('profiles').upsert({
+			id: session?.user.id,
+			workspace_id: workspaceId,
+			api_key: apiKey,
+			overtime_hourly_rate_post_tax: overtimeHourlyRatePostTax,
+		})
+
+		if (error) {
 			return fail(500, {
-				supabaseErrorMessage: writeError.message
-			});
+				workspaceId,
+				apiKey,
+				overtimeHourlyRatePostTax,
+			})
 		}
+
 		return {
-			success: true,
-			updatedProfile: data
+			workspaceId,
+			apiKey,
+			overtimeHourlyRatePostTax,
 		}
 	}
 };

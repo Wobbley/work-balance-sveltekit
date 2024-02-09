@@ -1,13 +1,14 @@
 <script lang="ts">
 	import '../app.postcss';
 	import { AppShell, AppBar } from '@skeletonlabs/skeleton';
-	import { IconLogin } from '@tabler/icons-svelte';
+	import { IconLogin, IconUser } from '@tabler/icons-svelte';
 	import { invalidate } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import type { LayoutData } from './$types';
 
 	export let data: LayoutData;
 
+	let { session, supabase } = data
 	$: ({ supabase, session } = data);
 
 	onMount(() => {
@@ -32,10 +33,17 @@
 				<strong class="text-xl">Work Balance</strong>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
-				<a class="btn btn-sm variant-ghost-surface" href="/login">
-					<span><IconLogin /></span>
-					<span>Login</span>
-				</a>
+				{#if session}
+					<a class="btn btn-sm variant-ghost-surface" href="/account">
+						<span><IconUser /></span>
+						<span>Account</span>
+					</a>
+				{:else}
+					<a class="btn btn-sm variant-ghost-surface" href="/login">
+						<span><IconLogin /></span>
+						<span>Login</span>
+					</a>
+				{/if}
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
