@@ -63,7 +63,10 @@
 	</form>
 	{#if form?.success}
 		<span class="divider-vertical h-1/2" />
-		<DiffResults diffResponse={form.diffResponse} hourlyRate="{data?.profile?.overtime_hourly_rate_post_tax}" />
+		<DiffResults
+			diffResponse={form.diffResponse}
+			hourlyRate={data?.profile?.overtime_hourly_rate_post_tax}
+		/>
 	{/if}
 </div>
 

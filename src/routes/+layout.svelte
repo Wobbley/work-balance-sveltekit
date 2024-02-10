@@ -8,7 +8,7 @@
 
 	export let data: LayoutData;
 
-	let { session, supabase } = data
+	let { session, supabase } = data;
 	$: ({ supabase, session } = data);
 
 	onMount(() => {
@@ -30,7 +30,9 @@
 		<!-- App Bar -->
 		<AppBar>
 			<svelte:fragment slot="lead">
-				<strong class="text-xl">Work Balance</strong>
+				<a href="/">
+					<strong class="text-xl">Work Balance</strong>
+				</a>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
 				{#if session}
