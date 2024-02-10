@@ -25,6 +25,11 @@
 		workspaceId: undefined,
 		apiKey: undefined
 	};
+
+	if (data?.profile) {
+		diffRequest.workspaceId = data?.profile.workspace_id;
+		diffRequest.apiKey = data?.profile.api_key;
+	}
 </script>
 
 <div class="container h-full mx-auto flex justify-center items-center max-w-[50%] gap-x-3">
@@ -57,7 +62,8 @@
 		<button type="submit" class="btn variant-filled-primary">Get Hours</button>
 	</form>
 	{#if form?.success}
-		<DiffResults diffResponse={form.diffResponse} />
+		<span class="divider-vertical h-1/2" />
+		<DiffResults diffResponse={form.diffResponse} hourlyRate="{data?.profile?.overtime_hourly_rate_post_tax}" />
 	{/if}
 </div>
 

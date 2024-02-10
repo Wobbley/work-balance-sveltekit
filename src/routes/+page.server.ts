@@ -1,6 +1,20 @@
 import type { DiffRequest, DiffResponse } from '$lib/types';
 import { workDays } from '$lib/time-utils';
 
+export const load = async ({ locals: { supabase, getSession } }) => {
+	const session = await getSession()
+
+	if (!session) {
+		return null
+	}
+	const { data: profile } = await supabase
+		.from('profiles')
+		.select(`workspace_id, api_key, overtime_hourly_rate_post_tax`)
+		.eq('id', session.user.id)
+		.single()
+
+	return { session, profile }
+}
 export const actions = {
 	default: async ({ request }) => {
 		const baseUrl = 'https://reports.api.clockify.me/v1';

@@ -20,7 +20,6 @@
 	let apiKey: string = profile?.api_key ?? ''
 	let overtimeHourlyRatePostTax: number = profile?.overtime_hourly_rate_post_tax ?? 0
 
-	console.log(profile.workspace_id)
 	const handleSubmit: SubmitFunction = () => {
 		loading = true
 		return async () => {
